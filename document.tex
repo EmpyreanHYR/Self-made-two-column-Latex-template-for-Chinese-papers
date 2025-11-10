@@ -69,6 +69,32 @@ AutoFakeBold = {2.0} % 如果 SimHei 仍然找不到，尝试自动加粗
 	font=normal,               % 字体设置为正常
 }
 
+
+\usepackage{cleveref} % 交叉引用
+\crefname{figure}{图}{图}
+\Crefname{figure}{图}{图}
+\crefname{table}{表}{表}
+\Crefname{table}{表}{表}
+\crefname{section}{节}{节}
+\Crefname{section}{节}{节}
+\crefname{equation}{公式}{公式}
+\Crefname{equation}{公式}{公式}
+
+
+\usepackage{cite} % 无自动上标，需要手动上标，下方才用重新定义实现
+% =================================
+% 重新定义 \cite 命令为上标（带方括号）
+% =================================
+% 1. 备份原始的 \cite 命令
+\let\oldcite\cite 
+% 2. 重新定义 \cite 命令，将其内容放入 \textsuperscript{}
+\renewcommand*\cite[1]{\textsuperscript{\oldcite{#1}}}
+
+%\usepackage[numbers, super]{natbib} % 无方括号，与cite选用
+
+\usepackage{fancyhdr} % 页眉页脚
+
+
 % 取消摘要环境自带的标题
 \renewcommand{\abstractname}{}
 \renewcommand{\absnamepos}{empty}
@@ -153,6 +179,9 @@ AutoFakeBold = {2.0} % 如果 SimHei 仍然找不到，尝试自动加粗
 \begin{thebibliography}{99} % 99 是最大编号的宽度
 	\bibitem{ref1} 参考文献1的详细信息.
 	\bibitem{ref2} 参考文献2的详细信息.
+	\bibitem{ref3} 参考文献3的详细信息.
+	\bibitem{ref4} 参考文献4的详细信息.
+	\bibitem{ref5} 参考文献5的详细信息.
 	% 继续添加更多参考文献...
 \end{thebibliography}
 	
