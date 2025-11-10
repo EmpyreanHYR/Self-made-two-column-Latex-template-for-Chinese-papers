@@ -5,7 +5,11 @@
 \usepackage{abstract} % 定制摘要
 
 \usepackage{indentfirst} % 设置首行缩进
-\setCJKmainfont{SimSun} % 设置中文字体为宋体
+
+\setCJKmainfont{SimSun}[
+BoldFont = SimHei, 
+AutoFakeBold = {2.0} % 如果 SimHei 仍然找不到，尝试自动加粗
+]
 \setmainfont{Times New Roman} % 设置英文字体
 
 
@@ -51,20 +55,30 @@
 % \usepackage[linesnumbered, ruled]{algorithm2e} % 另一种流行的算法排版宏包
 
 
+\usepackage{caption} % 用于定制标题格式
+\usepackage{xpatch}  % 用于修改 \captionname 宏（可选，但推荐用于中文/双语环境）
 
+% 1. 定义一个命令来存储中文的“图”和“表”名称，以配合 xeCJK 的中文环境
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
 
-
+% 2. 使用 caption 宏包定制标题格式：居中对齐，并在编号和文字之间添加空格
+\captionsetup{
+	justification=centering,   % 居中对齐
+	labelsep=quad,             % 标签和文字之间的间距（quad 略大于 space）
+	font=normal,               % 字体设置为正常
+}
 
 % 取消摘要环境自带的标题
 \renewcommand{\abstractname}{}
 \renewcommand{\absnamepos}{empty}
 
 \title{
-	中文标题 \\
+	\textbf{中文标题} \\
 	\vspace{0.5em} \normalsize 中文作者姓名 \\
 	{\small 中文作者单位，单位地址，邮编} \\
 	\vspace{1em} % 英文标题和中文标题之间的空间
-	\large Example of Chinese Title \\
+	\large \textbf{Example of Chinese Title} \\
 	\vspace{0.5em} \normalsize English Author Name \\
 	{\small English Author Affiliation, Address, Zip Code}
 }
@@ -83,7 +97,11 @@
 	\end{minipage}
 	
 	\begin{minipage}{0.9\textwidth} % 控制摘要正文宽度
-		这里是中文摘要内容。
+	
+	% 临时设置 \parindent 的值为 2em（中文两字符缩进）
+	\setlength{\parindent}{2em}
+	
+	\indent	这里是中文摘要内容。这里是中文摘要内容。这里是中文摘要内容。这里是中文摘要内容。这里是中文摘要内容。这里是中文摘要内容。这里是中文摘要内容。这里是中文摘要内容。这里是中文摘要内容。这里是中文摘要内容。这里是中文摘要内容。这里是中文摘要内容。这里是中文摘要内容。这里是中文摘要内容。这里是中文摘要内容。这里是中文摘要内容。这里是中文摘要内容。这里是中文摘要内容。
 	\end{minipage}
 	
 	\vspace{1em} % 在摘要和关键词之间添加一些空间
@@ -97,7 +115,9 @@
 	\end{minipage}
 	
 	\begin{minipage}{0.9\textwidth} % 控制摘要正文宽度
-		This is the content of the English abstract.
+	\setlength{\parindent}{2em}
+	
+	\indent	This is the content of the English abstract. This is the content of the English abstract. This is the content of the English abstract. This is the content of the English abstract. This is the content of the English abstract. This is the content of the English abstract. This is the content of the English abstract. 
 	\end{minipage}
 	
 	\vspace{1em} % 在摘要和关键词之间添加一些空间
@@ -109,23 +129,25 @@
 	
 	
 	% 正文内容
-	\section{引言}
+% =================================
+%	使用 \input 导入短小的内容（如图片列表、表格或自定义命令集合）。
+%	
+%	使用 \include 导入完整的章节（如 \section{...} 及其内容），因为它具有分页和有选择地编译的优势。
+% =================================
 	
-	这是引言部分。
+	\input{texfiles/1.引言.tex}
 	
-	\section{相关工作}
-	这是第一段。
+	\input{texfiles/2.相关工作.tex}
 	
-	这是第二段
+	\input{texfiles/3.方法.tex}
 	
-	\section{方法}
-	\lipsum[4-5]
+	\input{texfiles/4.实验.tex}	
 	
-	\section{实验}
-	\lipsum[6-7]
+	\input{texfiles/5.结论.tex}	
 	
-	\section{结论}
-	\lipsum[8]
+	
+	
+	
 	
 % 使用 thebibliography 环境格式化参考文献列表
 \begin{thebibliography}{99} % 99 是最大编号的宽度
