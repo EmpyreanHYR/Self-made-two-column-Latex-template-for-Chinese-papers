@@ -1,0 +1,137 @@
+\documentclass[twocolumn]{article}
+\usepackage{xeCJK} % 支持中文
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry} % 设置页边距
+\usepackage{lipsum} % 生成示例文本
+\usepackage{abstract} % 定制摘要
+
+\usepackage{indentfirst} % 设置首行缩进
+\setCJKmainfont{SimSun} % 设置中文字体为宋体
+\setmainfont{Times New Roman} % 设置英文字体
+
+
+% =================================
+% 数学与公式
+% =================================
+\usepackage{amsmath}        % AMS 提供的数学公式增强宏包，提供 align, gather 等环境
+\usepackage{amssymb}        % 包含大量数学符号，如 R（实数集）、\lesssim 等
+\usepackage{amsfonts}       % AMS 提供的数学字体，用于特殊字体（如花体字母）
+\usepackage{bm}             % 使公式中的粗体符号（如向量）显示为直立粗体 (\bm)
+
+% =================================
+% 图形、表格与浮动体
+% =================================
+\usepackage{graphicx}       % 引入图片（使用 \includegraphics 命令）
+\usepackage{float}          % 增强对浮动体（图、表）的控制，例如 H 定位符
+\usepackage{booktabs}       % 绘制专业、美观的三线表（使用 \toprule, \midrule, \bottomrule）
+\usepackage{multirow}       % 表格中合并行
+\usepackage{makecell}       % 表格中换行和调整单元格边距
+\usepackage{caption}        % 更好地自定义图表标题格式
+\usepackage{subcaption}     % 在一个浮动体中并排放置多个子图或子表
+
+
+% =================================
+% 链接与排版增强
+% =================================
+\usepackage{hyperref}       % 生成可点击的超链接（目录、引用、参考文献等），通常应最后加载
+\hypersetup{
+	colorlinks=true,        % 彩色链接
+	linkcolor=black,        % 内部链接颜色
+	citecolor=blue,         % 引用链接颜色
+	urlcolor=blue           % URL 链接颜色
+}
+\usepackage{enumerate}      % 增强列表环境（itemize, enumerate），允许自定义标签格式
+
+% =================================
+% 算法
+% =================================
+% 推荐使用下列其中一个宏包：
+\usepackage{algorithm}      % 算法浮动体环境
+\usepackage{algpseudocode}  % 伪代码排版宏包（与 algorithm 配合使用）
+% 或
+% \usepackage[linesnumbered, ruled]{algorithm2e} % 另一种流行的算法排版宏包
+
+
+
+
+
+
+% 取消摘要环境自带的标题
+\renewcommand{\abstractname}{}
+\renewcommand{\absnamepos}{empty}
+
+\title{
+	中文标题 \\
+	\vspace{0.5em} \normalsize 中文作者姓名 \\
+	{\small 中文作者单位，单位地址，邮编} \\
+	\vspace{1em} % 英文标题和中文标题之间的空间
+	\large Example of Chinese Title \\
+	\vspace{0.5em} \normalsize English Author Name \\
+	{\small English Author Affiliation, Address, Zip Code}
+}
+\date{} % 不显示日期
+
+% 将参考文献标题改为“参考文献”
+\renewcommand{\refname}{参考文献}
+\begin{document}
+	
+	\twocolumn[
+	\maketitle
+	\begin{minipage}{\textwidth} % 使用minipage使摘要和关键词保持单栏格式
+		\centering % 使得摘要标题居中
+		{\noindent \textbf{\large 摘要}} % 中文摘要标题
+		\vspace{0.5em} % 添加一些垂直空间
+	\end{minipage}
+	
+	\begin{minipage}{0.9\textwidth} % 控制摘要正文宽度
+		这里是中文摘要内容。
+	\end{minipage}
+	
+	\vspace{1em} % 在摘要和关键词之间添加一些空间
+	{\noindent \textbf{关键词：}关键词1, 关键词2, 关键词3}
+	\vspace{1em} % 在中文摘要和英文摘要之间添加一些空间
+	
+	\begin{minipage}{\textwidth}
+		\centering
+		{\noindent \textbf{\large Abstract}} % 英文摘要标题
+		\vspace{0.5em} % 添加一些垂直空间
+	\end{minipage}
+	
+	\begin{minipage}{0.9\textwidth} % 控制摘要正文宽度
+		This is the content of the English abstract.
+	\end{minipage}
+	
+	\vspace{1em} % 在摘要和关键词之间添加一些空间
+	{\noindent \textbf{Keywords:} Keyword1, Keyword2, Keyword3}
+	\vspace{1cm} % 在摘要和正文之间添加一些空间
+	]
+	
+	
+	
+	
+	% 正文内容
+	\section{引言}
+	
+	这是引言部分。
+	
+	\section{相关工作}
+	这是第一段。
+	
+	这是第二段
+	
+	\section{方法}
+	\lipsum[4-5]
+	
+	\section{实验}
+	\lipsum[6-7]
+	
+	\section{结论}
+	\lipsum[8]
+	
+% 使用 thebibliography 环境格式化参考文献列表
+\begin{thebibliography}{99} % 99 是最大编号的宽度
+	\bibitem{ref1} 参考文献1的详细信息.
+	\bibitem{ref2} 参考文献2的详细信息.
+	% 继续添加更多参考文献...
+\end{thebibliography}
+	
+\end{document}
